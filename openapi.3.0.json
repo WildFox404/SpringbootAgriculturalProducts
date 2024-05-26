@@ -1,0 +1,2316 @@
+{
+	"info": {
+		"title": "比亚的私有项目",
+		"description": "",
+		"version": "1.0.0"
+	},
+	"openapi": "3.0.0",
+	"tags": [
+		{
+			"name": "远程",
+			"description": ""
+		},
+		{
+			"name": "springboot",
+			"description": ""
+		},
+		{
+			"name": "用户User",
+			"description": ""
+		},
+		{
+			"name": "检疫Quarantine",
+			"description": ""
+		},
+		{
+			"name": "栏舍Fencehouse",
+			"description": ""
+		},
+		{
+			"name": "病症DiseaseRecord",
+			"description": ""
+		},
+		{
+			"name": "动物Animal",
+			"description": ""
+		},
+		{
+			"name": "批次Batch",
+			"description": ""
+		},
+		{
+			"name": "分析Analysis",
+			"description": ""
+		},
+		{
+			"name": "栏圈Hurdle",
+			"description": ""
+		},
+		{
+			"name": "本地",
+			"description": ""
+		}
+	],
+	"paths": {
+		"http://121.41.128.172:8888/user/login": {
+			"post": {
+				"summary": "登录",
+				"description": "",
+				"tags": [
+					"远程"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"username\":\"wildfox\",\r\n    \"password\":\"123456\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/user/updateAvatar": {
+			"patch": {
+				"summary": "更新用户头像-avatarUrl",
+				"description": "",
+				"tags": [
+					"远程/springboot/用户User"
+				],
+				"requestBody": {
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object"
+							},
+							"properties": {
+								"avatarUrl": {
+									"type": "string",
+									"description": "",
+									"example": "aabbccd"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/user/update": {
+			"put": {
+				"summary": "更新用户信息-无参数",
+				"description": "",
+				"tags": [
+					"远程/springboot/用户User"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"nickname\":\"懒狗lazydog\",\r\n    \"email\":\"3220429027@qq.com\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/user/updatePwd": {
+			"patch": {
+				"summary": "更新用户密码-新老再密码",
+				"description": "",
+				"tags": [
+					"远程/springboot/用户User"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"old_pwd\": \"234567\",\r\n    \"new_pwd\": \"123456\",\r\n    \"re_pwd\": \"123456\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/user/userInfo": {
+			"get": {
+				"summary": "获取用户信息-无参数",
+				"description": "",
+				"tags": [
+					"远程/springboot/用户User"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//无参数"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/quarantine/saveOrUpdate": {
+			"post": {
+				"summary": "添加检疫登记信息",
+				"description": "",
+				"tags": [
+					"远程/springboot/检疫Quarantine"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n  \"bQualified\": \"已检疫\", //检疫结果\r\n  \"grBatchId\": \"c60a95b2-066c-4022-84bc-996299d7c77c\", //批次编号\r\n  \"grImg\": \"http://121.224.77.1:9527/group1/M00/00/02/rBBkoGSlNleAMZX-AAAqqi5Ykdc70.webp\", //图片路径\r\n  \"grMechanism\": \"防疫站\" //检疫机构\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/fence/getHurdle": {
+			"get": {
+				"summary": "栏舍编号查询栏圈",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\n\t\"fhId\": \"54a990e4-0519-4f7c-a346-08d3ea821192\"\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/fence/queryAll": {
+			"get": {
+				"summary": "查询所有栏舍(无栏圈)无参数",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//无参数"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"/": {
+			"get": {
+				"summary": "查询所有栏舍(有栏圈)无参数",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏舍Fencehouse"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/fence/deleteById": {
+			"delete": {
+				"summary": "栏舍删除-根据fhId",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"fhId\":\"06233ab6-571f-466e-91ac-b534c3ad0a91\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/fence/deleteByIds": {
+			"delete": {
+				"summary": "栏舍批量删除-fhId数组",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//fhId的数组\r\n[\r\n    \"3f81a6d5-c607-4e49-835d-b2fcc9a9ac86\",\r\n    \"8234ff79-5f08-479e-8c6b-2cbb9b237991\"\r\n]"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/fence/saveOrUpdate": {
+			"post": {
+				"summary": "栏舍添加-fhId不携带",
+				"description": "***不携带fhId时即是新建栏舍***",
+				"tags": [
+					"远程/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//无fhId即视为添加\r\n{\r\n    \"fhName\": \"隔离舍1116号\",\r\n    \"fhDesc\": \"隔离病猪\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/diseaseRecord/saveOrUpdate": {
+			"post": {
+				"summary": "添加病症记录信息",
+				"description": "",
+				"tags": [
+					"远程/springboot/病症DiseaseRecord"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n  \"drAnimalId\": \"64b3bf42-dabd-4677-8b16-d330cd512e94\",\t// 动物编号\r\n  \"drCure\": \"无\",\t\t\t\t  \t\t\t\t  // 治疗过程描述\r\n  \"drDesc\": \"健康\",\t\t\t\t   \t\t\t\t   // 病症描述\r\n  \"drStatus\": \"健康\"\t\t  \t\t\t\t  // 治疗状态\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/animal/saveOrUpdate": {
+			"post": {
+				"summary": "动物添加-aAnimalId不携带",
+				"description": "",
+				"tags": [
+					"远程/springboot/动物Animal"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n  \"aBatchId\": \"c60a95b2-066c-4022-84bc-996299d7c77c\", //批次编号\r\n  \"aGender\": \"雄性\", //动物性别\r\n  \"aHealthy\": \"健康\", //动物健康状态\r\n  \"aStatus\": \"养殖\", //动物目前状态                                           \r\n  \"aHurdlesId\": \"ac21c337-d8e4-4fbb-bae8-9867968c2d93\", //栏圈编号\r\n  \"aInoculate\": \"已接种\", //动物疫苗接种状态\r\n  \"aWeight\": \"30\", //初始体重\r\n  \"aWeightInit\": 40\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/animal/queryAll": {
+			"post": {
+				"summary": "查询所有动物",
+				"description": "",
+				"tags": [
+					"远程/springboot/动物Animal"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//无参数"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/batch/queryAll": {
+			"get": {
+				"summary": "查询所有批次信息",
+				"description": "",
+				"tags": [
+					"远程/springboot/批次Batch"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/batch/saveOrUpdate": {
+			"post": {
+				"summary": "添加批次信息",
+				"description": "",
+				"tags": [
+					"远程/springboot/批次Batch"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"bQuarantine\":\"未检疫\",\r\n    \"bStatus\":\"已到货\",\r\n    \"bLocation\":\"安徽省合肥市\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/batch/queryAllUnquarantined": {
+			"get": {
+				"summary": "查询未检疫的批次",
+				"description": "",
+				"tags": [
+					"远程/springboot/批次Batch"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/analysis/indexCount": {
+			"get": {
+				"summary": "统计数量信息",
+				"description": "",
+				"tags": [
+					"远程/springboot/分析Analysis"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": ""
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/analysis/count": {
+			"get": {
+				"summary": "新建接口",
+				"description": "",
+				"tags": [
+					"远程/springboot/分析Analysis"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/hurdle/updateEnable": {
+			"put": {
+				"summary": "禁用/启用栏圈-hId&hEnable",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏圈Hurdle"
+				],
+				"parameters": [
+					{
+						"name": "hId",
+						"in": "query",
+						"description": "必须携带,否则报错\"数据错误\"",
+						"required": true,
+						"example": "e0737f3a-aa0f-4134-a399-5f5da0d19d25"
+					},
+					{
+						"name": "hEnable",
+						"in": "query",
+						"description": "只能\"禁用\"/\"可用\",否则报错\"非法参数\"",
+						"required": true,
+						"example": "禁用"
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//全参\r\n{\r\n    \"hId\":\"ac21c337-d8e4-4fbb-bae8-9867968c2d93\",\r\n    \"hEnable\":\"禁用\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/hurdle/queryAllEnable": {
+			"get": {
+				"summary": "查询所有未满和未禁用的栏圈",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": ""
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/hurdle/updateHurdle": {
+			"post": {
+				"summary": "栏圈更新",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": ""
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/hurdle/queryAllNoFence": {
+			"get": {
+				"summary": "查询所有栏圈信息(无栏舍)",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": ""
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/hurdle/updateEnables": {
+			"put": {
+				"summary": "批量禁用/启用栏圈-hId&hEnable",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "[\r\n    {\r\n        \"hId\" : \"ac21c337-d8e4-4fbb-bae8-9867968c2d93\",\r\n        \"hEnable\": \"可用\"\r\n    },\r\n    {\r\n        \"hId\" : \"e0737f3a-aa0f-4134-a399-5f5da0d19d25\",\r\n        \"hEnable\": \"可用\"\r\n    }\r\n]"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/hurdle/addHurdle": {
+			"post": {
+				"summary": "栏圈添加-全参",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//全参数\r\n{\r\n    \"fhId\": \"54a990e4-0519-4f7c-a346-08d3ea821192\",\r\n    \"hName\": \"保育圈\",\r\n    \"hDesc\": \"无\",\r\n    \"hMax\": 20,\r\n    \"hSaved\": 0,\r\n    \"hEnable\": \"可用\",\r\n    \"hFull\": \"空置\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:8888/hurdle/queryAllMax": {
+			"get": {
+				"summary": "查询所有栏圈容量",
+				"description": "",
+				"tags": [
+					"远程/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": ""
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://121.41.128.172:12345/user/register": {
+			"post": {
+				"summary": "注册",
+				"description": "",
+				"tags": [
+					"远程"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"username\":\"123456\",\r\n    \"password\":\"123456\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/user/login": {
+			"post": {
+				"summary": "登录",
+				"description": "",
+				"tags": [
+					"本地"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"username\":\"wildfox\",\r\n    \"password\":\"123456\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/user/updateAvatar": {
+			"patch": {
+				"summary": "更新用户头像-avatarUrl",
+				"description": "",
+				"tags": [
+					"本地/springboot/用户User"
+				],
+				"requestBody": {
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object"
+							},
+							"properties": {
+								"avatarUrl": {
+									"type": "string",
+									"description": "",
+									"example": "aabbccd"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/user/userInfo": {
+			"get": {
+				"summary": "获取用户信息-无参数",
+				"description": "",
+				"tags": [
+					"本地/springboot/用户User"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//无参数"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/user/update": {
+			"post": {
+				"summary": "更新用户信息-无参数",
+				"description": "",
+				"tags": [
+					"本地/springboot/用户User"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"nickname\":\"懒狗lazydog\",\r\n    \"email\":\"3220429027@qq.com\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/user/updatePwd": {
+			"patch": {
+				"summary": "更新用户密码-新老再密码",
+				"description": "",
+				"tags": [
+					"本地/springboot/用户User"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"old_pwd\": \"123456\",\r\n    \"new_pwd\": \"123456\",\r\n    \"re_pwd\": \"123456\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/batch/getAnimalCount": {
+			"post": {
+				"summary": "查看批次动物条数",
+				"description": "",
+				"tags": [
+					"本地/springboot/批次Batch"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"bBatchId\":\"d86ab417-0e0a-4a42-a89f-13cc9612aeb2\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/batch/queryAllUnquarantined": {
+			"get": {
+				"summary": "查询未检疫的批次",
+				"description": "",
+				"tags": [
+					"本地/springboot/批次Batch"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/batch/queryAllWithAnimal": {
+			"get": {
+				"summary": "查询所有批次信息(有动物)",
+				"description": "",
+				"tags": [
+					"本地/springboot/批次Batch"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//无参数"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/batch/queryAll": {
+			"get": {
+				"summary": "查询所有批次信息(无动物)",
+				"description": "",
+				"tags": [
+					"本地/springboot/批次Batch"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/batch/deleteById": {
+			"post": {
+				"summary": "批次删除",
+				"description": "",
+				"tags": [
+					"本地/springboot/批次Batch"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"bBatchId\":\"d86ab417-0e0a-4a42-a89f-13cc9612aeb2\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/batch/saveOrUpdate": {
+			"post": {
+				"summary": "添加批次信息",
+				"description": "",
+				"tags": [
+					"本地/springboot/批次Batch"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"bQuarantine\":\"未检疫\",\r\n    \"bStatus\":\"已到货\",\r\n    \"bLocation\":\"安徽省合肥市\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/queryAllMax": {
+			"get": {
+				"summary": "查询所有栏圈容量",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": ""
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/updateEnable": {
+			"put": {
+				"summary": "禁用/启用栏圈-hId&hEnable",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"parameters": [
+					{
+						"name": "hId",
+						"in": "query",
+						"description": "必须携带,否则报错\"数据错误\"",
+						"required": true,
+						"example": "e0737f3a-aa0f-4134-a399-5f5da0d19d25"
+					},
+					{
+						"name": "hEnable",
+						"in": "query",
+						"description": "只能\"禁用\"/\"可用\",否则报错\"非法参数\"",
+						"required": true,
+						"example": "禁用"
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//全参\r\n{\r\n    \"hId\":\"ac21c337-d8e4-4fbb-bae8-9867968c2d93\",\r\n    \"hEnable\":\"禁用\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/deleteHurdle": {
+			"post": {
+				"summary": "删除栏圈",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"hId\":\"02398cc6-7de8-40fc-bbfd-c7d037af0e9b\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/queryHurdlesAnimalsByfhId": {
+			"post": {
+				"summary": "查询栏舍对应栏圈及动物",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"fhId\":\"54a990e4-0519-4f7c-a346-08d3ea821192\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/updateEnables": {
+			"put": {
+				"summary": "批量禁用/启用栏圈-hId&hEnable",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "[\r\n    {\r\n        \"hId\" : \"ac21c337-d8e4-4fbb-bae8-9867968c2d93\",\r\n        \"hEnable\": \"可用\"\r\n    },\r\n    {\r\n        \"hId\" : \"e0737f3a-aa0f-4134-a399-5f5da0d19d25\",\r\n        \"hEnable\": \"可用\"\r\n    }\r\n]"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/queryAllNoFence": {
+			"get": {
+				"summary": "查询所有栏圈信息(无栏舍)",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": ""
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/addHurdle": {
+			"post": {
+				"summary": "栏圈添加-全参",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//全参数\r\n{\r\n    \"fhId\": \"54a990e4-0519-4f7c-a346-08d3ea821192\",\r\n    \"hName\": \"保育圈3号\",\r\n    \"hDesc\": \"无\",\r\n    \"hMax\": 20,\r\n    \"hEnable\": \"可用\",\r\n    \"hFull\": \"空置\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/queryAllEnable": {
+			"get": {
+				"summary": "查询所有未满和未禁用的栏圈",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": ""
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/hurdle/updateHurdle": {
+			"post": {
+				"summary": "栏圈更新",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏圈Hurdle"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"hId\":\"2285e96d-e03e-4826-bfff-cc914d6c1d53\",\r\n    \"hName\":\"保育圈\",\r\n    \"hDesc\":\"描述\",\r\n    \"hMax\":20,\r\n    \"hSaved\":0,\r\n    \"hEnable\":\"可用\",\r\n    \"fhId\":\"54a990e4-0519-4f7c-a346-08d3ea821192\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/quarantine/saveOrUpdate": {
+			"post": {
+				"summary": "添加检疫登记信息",
+				"description": "",
+				"tags": [
+					"本地/springboot/检疫Quarantine"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n  \"bQualified\": \"已检疫\", //检疫结果\r\n  \"grBatchId\": \"c60a95b2-066c-4022-84bc-996299d7c77c\", //批次编号\r\n  \"grImg\": \"http://121.224.77.1:9527/group1/M00/00/02/rBBkoGSlNleAMZX-AAAqqi5Ykdc70.webp\", //图片路径\r\n  \"grMechanism\": \"防疫站\" //检疫机构\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/animal/saveOrUpdate": {
+			"post": {
+				"summary": "动物修改-aAnimall",
+				"description": "",
+				"tags": [
+					"本地/springboot/动物Animal"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n  \"aAnimalId\":\"ee0891ee-64b6-497b-a4cd-5689fb751b76\",//动物编号\r\n  \"aBatchId\": \"c60a95b2-066c-4022-84bc-996299d7c77c\", //批次编号\r\n  \"aGender\": \"雄性\", //动物性别\r\n  \"aHealthy\": \"健康\", //动物健康状态\r\n  \"aStatus\": \"养殖\", //动物目前状态                                           \r\n  \"aHurdlesId\": \"ac21c337-d8e4-4fbb-bae8-9867968c2d93\", //栏圈编号\r\n  \"aInoculate\": \"已接种\", //动物疫苗接种状态\r\n  \"aWeight\": \"30\", //初始体重\r\n  \"aWeightInit\": 40\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/animal/queryAll": {
+			"post": {
+				"summary": "查询所有动物",
+				"description": "",
+				"tags": [
+					"本地/springboot/动物Animal"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//无参数"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/animal/deleteByaAnimalId": {
+			"post": {
+				"summary": "删除动物",
+				"description": "",
+				"tags": [
+					"本地/springboot/动物Animal"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"aAnimalId\":\"2fb8ffce-7eab-4a41-a7f5-4815fa9814f6\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/analysis/count": {
+			"get": {
+				"summary": "新建接口",
+				"description": "",
+				"tags": [
+					"本地/springboot/分析Analysis"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/analysis/indexCount": {
+			"get": {
+				"summary": "统计数量信息",
+				"description": "",
+				"tags": [
+					"本地/springboot/分析Analysis"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/diseaseRecord/saveOrUpdate": {
+			"post": {
+				"summary": "修改病症记录信息",
+				"description": "",
+				"tags": [
+					"本地/springboot/病症DiseaseRecord"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n  \"drId\":\"0093f3d8-7fa9-47cf-8c9c-9fc8b63ed331\",\r\n  \"drAnimalId\": \"64b3bf42-dabd-4677-8b16-d330cd512e94\", // 动物编号\r\n  \"drCure\": \"无\", // 治疗过程描述\r\n  \"drDesc\": \"患病初期\", // 病症描述\r\n  \"drStatus\": \"健康\" // 治疗状态\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/fence/deleteById": {
+			"post": {
+				"summary": "栏舍删除-根据fhId 副本",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"fhId\": \"35a2620b-15de-4ae9-a7e2-af234850cdd6\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/fence/deleteByIds": {
+			"delete": {
+				"summary": "栏舍批量删除-fhId数组",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//fhId的数组\r\n[\r\n    \"3f81a6d5-c607-4e49-835d-b2fcc9a9ac86\",\r\n    \"8234ff79-5f08-479e-8c6b-2cbb9b237991\"\r\n]"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/fence/getHurdle": {
+			"get": {
+				"summary": "栏舍编号查询栏圈",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\n\t\"fhId\": \"54a990e4-0519-4f7c-a346-08d3ea821192\"\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/fence/queryAll": {
+			"get": {
+				"summary": "查询所有栏舍(无栏圈)无参数",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//无参数"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"/getFencehouseByfhId": {
+			"post": {
+				"summary": "栏舍编号查询栏舍",
+				"description": "",
+				"tags": [
+					"本地/springboot/栏舍Fencehouse"
+				],
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/fence/saveOrUpdate": {
+			"post": {
+				"summary": "栏舍修改-fhId携带",
+				"description": "***携带fhId时即是修改栏舍***",
+				"tags": [
+					"本地/springboot/栏舍Fencehouse"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "//有fhId即视为修改\r\n{\r\n    \"fhId\": \"ad966602-7a80-4f7d-9eae-cd9a6b6ba1af\",\r\n    \"fhName\": \"培育舍1号\",\r\n    \"fhDesc\": \"培育种猪\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": []
+							}
+						}
+					}
+				}
+			}
+		},
+		"http://localhost:8888/user/register": {
+			"post": {
+				"summary": "注册",
+				"description": "",
+				"tags": [
+					"本地"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"username\":\"123456\",\r\n    \"password\":\"123456\"\r\n}"
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "失败",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "",
+			"description": "默认环境",
+			"variables": {}
+		},
+		{
+			"url": "https://console-mock.apipost.cn/mock/084ef081-1d13-4547-a6ea-3caec019d436/",
+			"description": "Mock环境",
+			"variables": {}
+		}
+	]
+}
